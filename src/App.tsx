@@ -1,9 +1,10 @@
 import { useState, useEffect } from 'react';
-import { Menu, X, Instagram, Mail, MessageCircle, Globe, Palette, Camera, Video, Code, Bot, TrendingUp, FileText, Edit3 } from 'lucide-react';
+import { Menu, X, Instagram, Mail, MessageCircle, Globe, Palette, Camera, Video, Code, Bot, TrendingUp, FileText, Edit3, RotateCcw } from 'lucide-react';
 
 function App() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isVisible, setIsVisible] = useState<{ [key: string]: boolean }>({});
+  const [flippedCards, setFlippedCards] = useState<{ [key: number]: boolean }>({});
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -40,6 +41,13 @@ function App() {
     console.log('WhatsApp URL:', whatsappUrl);
     
     window.open(whatsappUrl, '_blank');
+  };
+
+  const toggleCard = (index: number) => {
+    setFlippedCards(prev => ({
+      ...prev,
+      [index]: !prev[index]
+    }));
   };
 
   const handleFormSubmit = async (e: React.FormEvent) => {
@@ -202,6 +210,7 @@ function App() {
       <section id="team" className="py-20 px-4">
         <div className="container mx-auto">
           <h2 className="text-4xl md:text-5xl font-bold text-white text-center mb-12">Meet Our Team</h2>
+          
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {[
               {
@@ -209,33 +218,65 @@ function App() {
                 role: 'Creative Lead | SMM & Design Specialist',
                 experience: '3+ years experience, 100+ clients',
                 expertise: 'Social Media Marketing, Video Editing, Graphic Design (Menu Card, Business Card, Brochure, Letterhead, Logo, Poster & Package Design, Standee, ID/Certificate, Profile & Cover, Photo/Post, Thumbnails)',
-                education: 'B.Tech – AI & Data Science, Ramco Institute'
+                education: 'B.Tech – AI & Data Science, Ramco Institute',
+                image: '/images/annamalai-photo.jpg'
               },
               {
                 name: 'V. RAM VISWANATH',
                 role: 'Media Production & Ads Specialist',
                 experience: '2+ years experience, 25+ clients',
                 expertise: 'Videography, Video Editing, Photography, Poster Design, Meta Ads, Social media management ',
-                education: 'B.Tech – AI & Data Science, Ramco Institute'
+                education: 'B.Tech – AI & Data Science, Ramco Institute',
+                image: '/images/viswanath-photo.jpg'
               },
               {
                 name: 'V. RAM ROJITH',
                 role: 'Digital Strategist & Tech Lead',
                 experience: '3+ years experience, 25+ clients',
                 expertise: 'Content Strategy, Social Media, Meta Ads, Web Development, Landing Page Design, Poster Design, AI Chatbot Development',
-                education: 'B.Tech – AI & Data Science, Ramco Institute'
+                education: 'B.Tech – AI & Data Science, Ramco Institute',
+                image: '/images/rojith-photo.jpg'
               }
             ].map((member, index) => (
               <div
                 key={index}
-                className={`backdrop-blur-xl bg-white/10 border border-white/20 rounded-3xl p-8 hover:bg-white/15 hover:scale-105 transition-all duration-300 ${isVisible['team'] ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
-                style={{ transitionDelay: `${index * 150}ms` }}
+                className={`flip-card ${flippedCards[index] ? 'flipped' : ''} transition-all duration-1000 ${isVisible['team'] ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
+                style={{ 
+                  transitionDelay: `${index * 150}ms`,
+                  animationDelay: `${index * 100}ms`
+                }}
               >
-                <h3 className="text-2xl font-bold text-white mb-2">{member.name}</h3>
-                <p className="text-blue-300 font-semibold mb-3">{member.role}</p>
-                <p className="text-blue-200 text-sm mb-3">{member.experience}</p>
-                <p className="text-blue-100 text-sm mb-3"><span className="font-semibold">Expertise:</span> {member.expertise}</p>
-                <p className="text-blue-200 text-sm"><span className="font-semibold">Education:</span> {member.education}</p>
+                <div 
+                  className="flip-card-inner" 
+                  onClick={() => toggleCard(index)}
+                >
+                  {/* Front of card */}
+                  <div className="flip-card-front">
+                    <div className="flip-indicator">
+                      <RotateCcw size={16} />
+                    </div>
+                    <h3 className="text-2xl font-bold text-white mb-2">{member.name}</h3>
+                    <p className="text-blue-300 font-semibold mb-3">{member.role}</p>
+                    <p className="text-blue-200 text-sm mb-3">{member.experience}</p>
+                    <p className="text-blue-100 text-sm mb-3"><span className="font-semibold">Expertise:</span> {member.expertise}</p>
+                    <p className="text-blue-200 text-sm"><span className="font-semibold">Education:</span> {member.education}</p>
+                  </div>
+                  
+                  {/* Back of card */}
+                  <div className="flip-card-back">
+                    <div className="flip-indicator">
+                      <RotateCcw size={16} />
+                    </div>
+                    <img 
+                      src={member.image} 
+                      alt={member.name}
+                      className="team-photo"
+                    />
+                    <h3 className="text-2xl font-bold text-white mb-2">{member.name}</h3>
+                    <p className="text-blue-300 font-semibold mb-4">{member.role}</p>
+                    <p className="text-blue-200 text-center">Click to see details</p>
+                  </div>
+                </div>
               </div>
             ))}
           </div>
@@ -267,7 +308,7 @@ function App() {
                 type: 'website'
               },
               {
-                title: 'URS CHOICE – REAL ESTATE WEBSITE',
+                title: 'URS CHOICE – LANDING PAGE',
                 desc: 'Modern real estate landing page with clean layout, clear CTAs, structured content, mobile-friendly, optimized for inquiries and trust',
                 link: 'https://urs-choice-landing-page.vercel.app',
                 type: 'website'
