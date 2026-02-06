@@ -173,7 +173,7 @@ function App() {
       <section id="services" className="py-20 px-4">
         <div className="container mx-auto">
           <h2 className="text-4xl md:text-5xl font-bold text-white text-center mb-12">Our Services</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {[
               { icon: Palette, title: 'Graphic Design', desc: 'Professional visual design for all your branding needs' },
               { icon: Camera, title: 'Photography', desc: 'Stunning photography that captures your brand essence' },
@@ -215,7 +215,7 @@ function App() {
                 name: 'V. RAM VISWANATH',
                 role: 'Media Production & Ads Specialist',
                 experience: '2+ years experience, 25+ clients',
-                expertise: 'Videography, Video Editing, Photography, Poster Design, Meta Ads, SMM',
+                expertise: 'Videography, Video Editing, Photography, Poster Design, Meta Ads, Social media management ',
                 education: 'B.Tech – AI & Data Science, Ramco Institute'
               },
               {
@@ -273,15 +273,9 @@ function App() {
                 type: 'website'
               },
               {
-                title: '5 STAR - TASK MANAGEMENT',
-                desc: 'Modern real estate landing page with clean layout, clear CTAs, structured content, mobile-friendly, optimized for inquiries and trust',
-                link: 'https://urs-choice-landing-page.vercel.app',
-                type: 'website'
-              },
-              {
-                title: 'URS CHOICE – Real Estate Website',
-                desc: 'Modern real estate landing page with clean layout, clear CTAs, structured content, mobile-friendly, optimized for inquiries and trust',
-                link: 'https://urs-choice-landing-page.vercel.app',
+                title: 'LIO MAXX - AYURVEDIC MEDICINE',
+                desc: 'Natural Healing. Proven Results. Trusted Ayurveda. A clean, professional, and wellness-focused landing page designed to build credibility, confidence, and conversions.',
+                link: 'https://www.liomaxx.com/',
                 type: 'website'
               }
             ].map((project, index) => (
@@ -394,9 +388,9 @@ function App() {
 
       <footer className="py-12 px-4 backdrop-blur-md bg-white/5 border-t border-white/10">
         <div className="container mx-auto text-center">
-          <h3 className="text-2xl font-bold text-white mb-4">ARRlSE DIGITAL</h3>
+          <h3 className="text-2xl font-bold text-white mb-4">ARRlSE DIGITAL - MARKETING AGENCY</h3>
           <p className="text-blue-200 mb-4">
-            Contact: +91 73051 15192 | arrisedigital@gmail.com
+            Contact: +91 73051 15192 | +91 9363973591 | arrisedigital@gmail.com
           </p>
           <p className="text-blue-200 mb-6">Remote Control Agency, Madurai</p>
           <div className="flex justify-center gap-6 mb-6">
